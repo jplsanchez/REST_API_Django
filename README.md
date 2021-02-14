@@ -40,7 +40,7 @@ urlpatterns = [
 ### - Adicionar a view no views.py no app:
 ``` Python
 def list_elements(request):
-    elements = Element.object.all()
+    elements = Element.objects.all()
     return render(request, 'list.html',{'elements':elements})
 ```
 ### - Importar as views no urls.py no app 
@@ -65,5 +65,16 @@ $ python manage.py makemigrations
 
 $ python manage.py migrate
 
+# Super User
 
+$ python manage.py createsuperuser
 
+### - Registrar o model no admin.py do app
+
+``` Python
+from django.contrib import admin
+from .models import Element
+
+# Register your models here.
+admin.site.register(Element)
+```

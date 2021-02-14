@@ -1,0 +1,1 @@
+[{"model": "api_app.element", "pk": 1, "fields": {"name": "JoÃ£o Paulo Lopes Sanchez", "description": "UsuÃ¡rio de Teste 1", "date_created": "2021-02-14T03:59:49.482Z"}}, {"model": "api_app.element", "pk": 2, "fields": {"name": "Rogerinho", "description": "UsuÃ¡rio de Teste 2", "date_created": "2021-02-14T04:31:29.304Z"}}]
