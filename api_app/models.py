@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class Element(models.Model):
+class User(models.Model):
     name = models.CharField(max_length=24)
     description = models.CharField(max_length=255)
     date_created = models.DateTimeField(auto_now=True)
