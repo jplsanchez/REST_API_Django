@@ -1,3 +1,15 @@
+# O que estou aprendendo nesse projeto
+
+* Git
+* Markdown
+* Django
+* Django REST Framework - DRF
+* *Docker (Futuramente)*
+* *PostgreSQL (Futuramente - Integrado com Django)*
+
+
+<br>
+
 # Criando projeto Django
 
 $ conda activate Django_env
@@ -16,6 +28,8 @@ $ git add .
 $ git commit -m "Configurações iniciais"
 
 ### - Adicionar gitignore (Python) e adicionar a ele .vscode/
+
+<br>
 
 # Criando APP
 
@@ -78,3 +92,51 @@ from .models import Element
 # Register your models here.
 admin.site.register(Element)
 ```
+
+# REST Framework
+
+[Link Django REST Base](https://www.django-rest-framework.org/)
+
+[Link Django Rest Extra Tutorial](https://medium.com/@marcosrabaioli/criando-uma-api-rest-utilizando-django-rest-framework-parte-1-55ac3e394fa)
+
+
+### - Adicionar o app 'rest_framework' no settings.py
+
+
+### - Criar o serializer.py no app:
+``` Python
+from rest_framework import  serializers
+from .models import User
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id','name','adress','age','description')
+```
+
+### - Adicionar a view serializada ao view.py no app:
+``` Python
+from .models import User
+from rest_framework import viewsets
+from .serializers import UserSerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+```
+
+### -Adicionar rotas no url.py (adicionei no app, mas pode ser no project):
+``` Python
+from rest_framework import routers
+from .views import UserViewSet
+
+router = routers.DefaultRouter()
+router.register('users', UserViewSet)
+
+urlpatterns = [
+    ... ,
+    path('route',include(router.urls))
+]
+```
+
+> Adicionar mais um model
