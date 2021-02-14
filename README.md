@@ -28,7 +28,7 @@ $ Django-admin startapp api_app
 ``` Python
 path('', include('api_app.urls'))
 ```
-### - Criar um url.py no app:
+### - Criar um urls.py no app:
 
 ``` Python
 from django.urls import path
@@ -43,6 +43,7 @@ def list_elements(request):
     elements = Element.object.all()
     return render(request, 'list.html',{'elements':elements})
 ```
+### - Importar as views no urls.py no app 
 
 ### - Adicionar o model no model.py no app:
 ``` Python
@@ -55,4 +56,14 @@ class Element(models.Model):
          return self.description
 ```
 
-### - Importar os models no views.py no app
+### - Importar os models no views.py no app 
+<br>
+
+# Migrations
+
+$ python manage.py makemigrations
+
+$ python manage.py migrate
+
+
+
