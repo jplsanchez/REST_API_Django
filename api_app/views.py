@@ -1,4 +1,5 @@
 from django.http.response import HttpResponse
+from django.http.request import HttpRequest
 from django.core import serializers
 from .models import User
 
@@ -10,3 +11,6 @@ def get_users(request):
     return HttpResponse(users_list, content_type="text/json-comment-filtered")
     
     # return render(request, 'list.html',{'elements':elements})
+
+def create_user(request):
+    pass
