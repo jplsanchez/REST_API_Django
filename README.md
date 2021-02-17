@@ -95,7 +95,11 @@ admin.site.register(Element)
 
 # REST Framework
 
-[Link Django REST Base](https://www.django-rest-framework.org/)
+> ## Model -> Serializer -> View -> Rota 
+
+<br>
+
+[Link Django REST Base](https://www.django-rest-framework.org/tutorial/quickstart/)
 
 [Link Django Rest Extra Tutorial](https://medium.com/@marcosrabaioli/criando-uma-api-rest-utilizando-django-rest-framework-parte-1-55ac3e394fa)
 
@@ -138,5 +142,76 @@ urlpatterns = [
     path('route',include(router.urls))
 ]
 ```
+
+# Docker
+
+### - criar requirements.txt
+
+### - criar Dockerfile:
+
+``` Dockerfile
+FROM python:3.8
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+WORKDIR /code
+
+COPY requirement.txt .
+RUN pip install -r requirement.txt
+
+COPY . .
+```
+### - Criar o docker-compose.yml:
+
+``` yml
+version: "3.8"
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8080
+    volumes:
+      - .:/code
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+  db:
+    image: postgres:13
+    enviroment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+volumes:
+  postgres_data:
+```
+
+### - mudar o campo DATABASES no setting.py para:
+
+``` Python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "postgres",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "db",
+        "PORT": "5432",
+    }
+}
+```
+$ docker-compose up -d
+
+$ docker-compose up --build     (para forçar build)
+
+$ docker-compose logs
+
+### - Rodar migrações no Docker
+docker-compose exec web python manage.py migrate
+
+
 
 > Adicionar mais um model
