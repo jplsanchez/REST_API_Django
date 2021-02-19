@@ -1,9 +1,9 @@
 from django.http.response import HttpResponse
 from django.core import serializers as django_serializers
 
-from .models import User
+from .models import User, UserType
 from rest_framework import viewsets
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UserTypeSerializer
 
 # Create your views here.
 
@@ -21,3 +21,7 @@ def create_user(request):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+class UserTypeViewSet(viewsets.ModelViewSet):
+    queryset = UserType.objects.all()
+    serializer_class = UserTypeSerializer

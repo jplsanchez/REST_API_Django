@@ -4,8 +4,7 @@
 * Markdown
 * Django
 * Django REST Framework - DRF
-* *Docker (Futuramente)*
-* *PostgreSQL (Futuramente - Integrado com Django)*
+* Docker (Futuramente)
 
 
 <br>
@@ -210,7 +209,8 @@ $ docker-compose up --build     (para forçar build)
 $ docker-compose logs
 
 ### - Rodar migrações no Docker
-docker-compose exec web python manage.py migrate
+
+$ docker-compose exec web python manage.py migrate
 
 
 
