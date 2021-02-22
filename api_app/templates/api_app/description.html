@@ -1,0 +1,9 @@
+{% if user %}
+    <h1 style="text-align: center;">Descri&ccedil;&atilde;o de usu&aacute;rio</h1>
+    <h2 style="text-align: center;">Usuário: {{ user.name }}</h2>
+    <p style="text-align: center;"> Descrição: {{ user.description }}</p>
+    <p style="text-align: center;">&nbsp;</p>
+    <p style="text-align: left;"><a href="/{{ user.id }}/created_recently/">{{ "Criado recentemente?" }}</a></p>
+{% else %}
+    <h1><strong>Usuário não encontrado.</strong></h1>
+{% endif %}
